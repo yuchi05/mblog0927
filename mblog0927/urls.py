@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from mysite import views as mv  #from mysite.views import homepage 相等
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',mv.homepage, name="homepage"),#什麼都沒輸入時預設到homepage   path('',mv.homepage) 相等
+    path('post/<slug:slug>/', mv.showpost, name="showpost"),
 ]
