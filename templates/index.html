@@ -1,8 +1,16 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+{% extends "base2.html" %}
+{% block title %}歡迎光臨我的部落格{% endblock title %}
+{% block headmessage %} <h3 style='font-family:標楷體;'>本站文章列表</a>
+{% endblock headmessage %}
+{% block content %}
+{% for post in posts %}
+<p style='font-family:微軟正黑體;font-size:14pt;font-weight:bold;'>
+    <a href='/post/{{post.slug}}'>{{ post.title }}</a>
+</p>
+{% endfor %}
+{% endblock content %}
+
+{% comment %} <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -13,9 +21,6 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
         <h1>歡迎光臨部落客</h1>
         <hr>
         {% for post in posts %}  <!--語法用{}包起來 跑回圈 -->
@@ -27,4 +32,4 @@
         現在時間: {{ now }}
         <script src="" async defer></script>
     </body>
-</html>
+</html> {% endcomment %}
