@@ -1,7 +1,18 @@
 {% extends "base2.html" %}
 {% block title %}歡迎光臨我的部落格{% endblock title %}
-{% block headmessage %} <h3 style='font-family:標楷體;'>本站文章列表</a>
+
+{% block headmessage %} 
+<h3 style='font-family:標楷體;'>本站文章列表</a>
+        hour: {{ hour }} {% comment %} 在views.py內定義hour {% endcomment %}
+    {% if hour > 18 %} {% comment %} 如果時間大於18點的話顯示晚安 {% endcomment %}
+    晚安
+    {% elif hour < 10 %}
+    早安
+    {% else %}
+    你好
+    {% endif %}
 {% endblock headmessage %}
+
 {% block content %}
 測試<a href='{% url 'post-url' 2015 10 3 02 %}'>show POST</a> {% comment %} 回傳給urls.py內path的post {% endcomment %}
 
@@ -27,8 +38,8 @@
     </div>
 </div>
 <br>
-
 {% endfor %}
+
 {% endblock content %}
 
 {% comment %} <!DOCTYPE html>
