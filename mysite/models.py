@@ -12,7 +12,16 @@ class Post(models.Model):
     
     def __str__(self) -> str:
         return self.title
+
+class Comment(models.Model): #留言板
+    post = models.ForeignKey(Post, on_delete=models.CASCADE) #留言
+    text = models.CharField(max_length=200) #文字
+    pub_date = models.DateTimeField(auto_now_add=True) #時間
     
+    def __str__(self):
+        return self.text
+    
+
 class Product(models.Model):
     SIZES = (
         ('S', 'Small'),  #('S'->真正儲存內容, 'Small'->選項) 

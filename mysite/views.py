@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mysite.models import Post
+from mysite.models import Post,Comment
 from django.http import HttpResponse
 from datetime import datetime
 from django.shortcuts import redirect
@@ -15,8 +15,16 @@ def showpost(request, slug):
     post = Post.objects.get(slug=slug)    #select * from post where slug=%slug
     return render(request, 'post.html', locals())
 
+def show_all_posts(request):
+    posts  = Post.objects.all()
+    return render(request, 'allposts.html', locals())
+
+def show_comments(request,post_id):
+    # comments = comments.objexts.filter(post=post_id) #filter 拿多個檔案　較不適用
+    comments = Post.objects.get(id=post_id).comment_set.all() #comment_set.all() 動態產生
+    return render(request, 'comments.html', locals())
+
 def carlist(request, maker=0): 
-    # '''
     # car_maker = ['SAAB', 'Ford', 'Honda', 'Mazda', 'Nissan','Toyota' ]
     # car_list = [ 
     #             [],
@@ -26,7 +34,6 @@ def carlist(request, maker=0):
     #             ['Tida', 'March', 'Livina', 'Sentra', 'Teana', 'X-Trail', 'Juke', 'Murano'],
     #             ['Camry','Altis','Yaris','86','Prius','Vios', 'RAV4', 'Wish']
     #             ]
-    # '''
     car_maker = ['Ford', 'Honda', 'Mazda']
     car_list = [[ {'model':'Fiesta', 'price': 203500},
                     {'model':'Focus','price': 605000},
@@ -54,6 +61,7 @@ def carlist(request, maker=0):
 #     </html>
 #     '''
 #     return HttpResponse(mthml) #直接將字串回傳給網站
+
 import random
 def about(request, num=-1): #num=-1預設值
     quotes = ['今日事，今日畢',

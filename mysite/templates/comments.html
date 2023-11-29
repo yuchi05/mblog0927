@@ -1,0 +1,27 @@
+{% extends "base2.html" %}
+{% block title %} 歡迎光臨我的部落格 {% endblock title %}
+{%block headmessage %}
+<h3 style='font-family:標楷體;'>文章回覆 -table版本</a>
+    {% now 'Y M d D' %}
+{% endblock headmessage %}
+
+{% block content %}
+{% for c in comments %}
+{% if forloop.first %} {% comment %} 第一次跑回圈要跑的 {% endcomment %}
+<table>
+    <tr background="#cccccc">
+        <th>Title</th>
+        <th>pub date</th>
+    </tr>
+{% endif %} {% comment %} 第一次以外跑回圈時會跑的 {% endcomment %}
+    <tr background='{% cycle "#ffccff" "#ccffcc" %}'>
+        <td>{{ post.title }}</td>
+        <td>{{ post.pub_date }}</td>
+    </tr>
+{% if forloop.last %} {% comment %} 最後一次跑回圈要跑的 {% endcomment %}
+</table> {% comment %} 關table {% endcomment %}
+{% endif %}
+{% empty %}
+<h2>沒有任何回覆</h2>
+{% endfor %}
+{% endblock content %}

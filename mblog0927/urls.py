@@ -20,10 +20,12 @@ from mysite import views  #跟from mysite.views import homepage 相等
 
 urlpatterns = [
     path('admin/', admin.site.urls), #網址後面輸入admin/至管理者介面
-    path('',views.homepage, name="homepage"),#網址後面什麼都沒輸入時預設到homepage   path('',mv.homepage) 相等
+    path('',views.homepage, name="homepage"),#首頁 網址後面什麼都沒輸入時預設到homepage   path('',mv.homepage) 相等
     path('post/<slug:slug>/', views.showpost, name="showpost"), #網址名稱為在管理者內自己輸入的slug
+    path('post/',views.show_all_posts, name="show-all-posts"),
+    path('post/<int:post_id>/comments', views.show_comments, name='show-comments'), #網址後輸入post/數字／comments 出現該順序的post內留言的內容
     path('about/' , views.about, {'num':1}), #網址後輸入about/ 出現views內定義的資料
-    path('about/<int:num>', views.about), #'about/<int:num>'路徑   mv.about呼叫函式     {'num':1}參數  #加入整數參數num 若在about/後輸入整數數字,網站上出現該數字
+    path('about/<int:num>', views.about , name='about'), #'about/<int:num>'路徑   mv.about呼叫函式     {'num':1}參數  #加入整數參數num 若在about/後輸入整數數字,網站上出現該數字
     path('post/<int:yr>/<int:mon>/<int:day>/<int:post_num>/',views.Post, name='post-url'),
     path('carlist/',views.carlist),
     path('carlist/<int:maker>/', views.carlist, name='carlist-url'),
