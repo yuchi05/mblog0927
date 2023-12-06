@@ -82,3 +82,43 @@ def homepage(request):  #request參數
         post_lists.append(f'No. {counter} {post} <br>') #格式化
     return HttpResponse(post_lists)
 '''
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
+def new_post(request):
+    print(f'form method: {request.method}') #畫網頁
+    if request.method == 'GET':
+        return render(request, 'myform_1.html', locals())
+    elif request.method == 'POST': #透過表單的post 將網頁回傳
+        title = request.POST['title']
+        slug = request.POST['slug']
+        content = request.POST['content']
+        post=Post(title=title, slug=slug, body=content)
+        post.save()
+        return HttpResponseRedirect(reverse('show-all-posts')) #送出後自動導入到show-all-posts網頁 #Redirect重新導向
+'''
+def new_post(request):
+    print(f'form method: {request.method}')
+    if request.method == 'GET':
+        return render(request, 'myform_1.html', locals())
+    elif request.method == 'POST':
+        username = request.POST['user_id']
+        password = request.POST['password']
+        if username == 'ntub' and password == 'a123' :
+            is_validated = True
+        else:
+            is_validated = False
+        
+        print(f'post-username:{username}, password:{password}')
+        return render(request, 'myform_1.html', locals())  
+'''
+'''
+    try:
+        username = request.GET['user_id']
+        password = request.GET['password']
+        print(f'username:{username}, password:{password}')
+        return render(request, 'myform_1.html', locals())
+        
+    except:
+        return render(request, 'myform_1.html', locals())  #如果user沒有輸入就是render , 有輸入 網址就是他輸入的值
+'''

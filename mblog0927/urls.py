@@ -29,4 +29,5 @@ urlpatterns = [
     path('post/<int:yr>/<int:mon>/<int:day>/<int:post_num>/',views.Post, name='post-url'),
     path('carlist/',views.carlist),
     path('carlist/<int:maker>/', views.carlist, name='carlist-url'),
+    path('post/new', views.new_post, name="post-new") #網址後面輸入post/new就會連到new_post
 ]   

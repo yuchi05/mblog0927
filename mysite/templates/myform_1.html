@@ -1,0 +1,41 @@
+
+{% extends "base2.html" %}
+{% block title %} 表單輸入{% endblock %}
+{% block headmessage %}
+<a  style='font-family:微軟正黑體;'href='/'>回首頁</a>   
+{% endblock headmessage %} 
+{% comment %} 
+{% endblock headmessage %}    
+{% block content %}
+{% if is_validated %}
+<h2>登入成功</h2>
+{% else  %}
+<h2>登入失敗</h2> 
+{% endif %} 
+{% endcomment %}
+{% block content %}
+<h2>HTML Forms</h2>
+<form name="myform" method="post">
+        {% csrf_token %}
+    <label for="fname">標題:</lable><br>   
+    <input type="text" id="title" name="title" value="title"><br>      
+    <label for="lname">slug:</label><br>
+    <input type="text" id="slug" name="slug"><br>
+    <label for="content">內文:</label><br>
+    <textarea id='contect' name='content' cols='30'></textarea>
+    <br>
+    <input type="submit" value="送出">
+</form>
+
+{% comment %} 
+<form name="myform" method="post">
+    {% csrf_token %}
+<label for="fname">名字</lable><br>   
+<input type="text" id="user_id" name="user_id" value="ntub"><br> 
+<label for="lname">密碼</label><br>
+<input type="password" id="password" name="password"><br><br>
+<input type="submit" value="送出">
+</form> 
+{% endcomment %}
+
+{% endblock content %} 
