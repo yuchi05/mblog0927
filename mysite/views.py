@@ -9,6 +9,7 @@ def homepage(request): #首頁
     posts = Post.objects.all()
     now = datetime.now()
     hour = now.timetuple().tm_hour #時間 index用到hour
+    years = range(1960,2024) #產生range1960-2023
     return render(request, 'index.html', locals()) #透過render呼叫網站
 
 def showpost(request, slug):
@@ -93,7 +94,8 @@ def new_post(request):
         title = request.POST['title']
         slug = request.POST['slug']
         content = request.POST['content']
-        post=Post(title=title, slug=slug, body=content)
+        category = request.POST.getlist('category') #多筆資料 用串列
+        post=Post(title=title, slug=slug, body=content, category=category)
         post.save()
         return HttpResponseRedirect(reverse('show-all-posts')) #送出後自動導入到show-all-posts網頁 #Redirect重新導向
 '''

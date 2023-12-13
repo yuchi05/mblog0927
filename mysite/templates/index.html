@@ -2,16 +2,29 @@
 {% block title %}歡迎光臨我的部落格{% endblock title %}
 
 {% block headmessage %} 
-<h3 style='font-family:標楷體;'>本站文章列表</a>
-        hour: {{ hour }} {% comment %} 在views.py內定義hour {% endcomment %}
-    {% if hour > 18 %} {% comment %} 如果時間大於18點的話顯示晚安 {% endcomment %}
-    晚安
+<h3 style='font-family:標楷體;'>本站文章列表</h3>
+<label for ="byear">無意義年份:</label>
+<select name = "byear">
+    {% for year in years %}
+    <option value="{{year}}">西元{{year}}</option>
+    {% endfor %}
+</select>
+<input type='radio' name='ryear' checked>2000</input>
+<input type='radio' name='ryear'>2001</input>
+<input type='radio' name='ryear'>2002</input>
+<input type='radio' name='ryear'>2003</input>
+{% endblock headmessage %}
+{% comment %}
+        hour: {{ hour }}  在views.py內定義hour
+    {% if hour > 13 %}  如果時間大於18點的話顯示晚安 
+    下午安
     {% elif hour < 10 %}
     早安
     {% else %}
     你好
     {% endif %}
-{% endblock headmessage %}
+
+{% endcomment %}
 
 {% block content %}
 測試<a href='{% url 'post-url' 2015 10 3 02 %}'>show POST</a> {% comment %} 回傳給urls.py內path的post {% endcomment %}
@@ -23,7 +36,7 @@
             {% comment %} 網址是寫死的 {% endcomment %}
             {% comment %} <a href='/post/{{post.slug}}'>{{ post.title }}</a> {% endcomment %}
             {% comment %} 網址是活的 會更著更改 {% endcomment %}
-            <a href='{% url 'showpost' post.slug %}'>{{ post.title }}</a>
+            {% comment %} <a href='{% url 'showpost' post.slug %}'>{{ post.title }}</a> {% endcomment %}
         </p>
     </div>
     <div class='card-body' style='background-color:#add8e6'>
