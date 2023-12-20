@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mysite import views as mv#跟from mysite.views import homepage 相等 
+from mysite import views as mv #跟from mysite.views import homepage 相等 
 from mytest import views as testv
 
 urlpatterns = [
@@ -32,4 +32,6 @@ urlpatterns = [
     path('carlist/<int:maker>/', mv.carlist, name='carlist-url'),
     path('post/new', mv.new_post, name="post-new"), #網址後面輸入post/new就會連到new_post
     path('test/' , testv.index, name="test-new"),
-]   
+    path('test/delpost/<int:pid>', testv.delpost),
+    path('test/contact',testv.contact),
+] 

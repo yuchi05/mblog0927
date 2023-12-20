@@ -1,0 +1,48 @@
+{% extends "base2.html" %}
+{% block title %} 表單輸入-2 {% endblock title %}
+{% block headmessage %} 
+{% endblock headmessage %} 
+
+{% block content %}
+<script>
+  function go_delete(id){
+      //var user_pass = document.getElementById('user_pass').value;
+      //if (user_pass != "") {
+      var usr = 'delpost/' + id;
+      window.location = usr;
+      //}
+  }
+</script>
+<h2>HTML Forms</h2>
+{% if message %}
+    <div class='alert alert-warning'>
+         {{ message }}
+    </div>
+{% endif %}
+{% comment %}
+<form action="" method="post">
+    {% csrf_token %}
+  {{ form.as_p }}   自動將表格產生表單 
+  <input type='submit' value='張貼'>
+  <input type='reset' value='清除重填'>
+</form> 
+
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+  {{ form.as_table }} 自動將表格產生表格型式的表單
+    </table>
+  <input type='submit' value='張貼'>
+  <input type='reset' value='清除重填'>
+</form> 
+</hr>
+{% endcomment %}
+
+<form action="" method="post">
+    {% csrf_token %}
+  {{ form.as_p }}   {% comment %} 自動將表格產生 {% endcomment %}
+  <input type='submit' value='張貼'>
+  <input type='reset' value='清除重填'>
+</form> 
+{% endblock content %}
