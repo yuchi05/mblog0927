@@ -32,6 +32,9 @@ urlpatterns = [
     path('carlist/<int:maker>/', mv.carlist, name='carlist-url'),
     path('post/new', mv.new_post, name="post-new"), #網址後面輸入post/new就會連到new_post
     path('test/' , testv.index, name="test-new"),
-    path('test/delpost/<int:pid>', testv.delpost),
-    path('test/contact',testv.contact),
+    path('test/delpost/<int:pid>', testv.delpost), #delpost垃圾桶
+    path('test/contact',testv.contact, name="test-contact"),
+    path('post2db', testv.post2db, name='post2db'),
+    path('register/',testv.register, name='register'),
+    path('login/',testv.login, name='login'),
 ] 

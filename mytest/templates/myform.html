@@ -8,7 +8,7 @@
   function go_delete(id){
       //var user_pass = document.getElementById('user_pass').value;
       //if (user_pass != "") {
-          var usr = '/' + id ;
+          var usr = 'delpost/' + id ;
           window.location = usr;
       //}
   }
@@ -53,6 +53,7 @@
           <div class='card-body'>{{ p.message | linebreaks }}</div>
           <div class='card-footer' align='right'>
               <i><small>{{ p.pub_time }}</small></i>
+              <i class="bi bi-trash" onclick='go_delete({{p.id}})'></i>
           </div>
       </div>
   </div>
