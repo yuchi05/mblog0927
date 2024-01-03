@@ -37,4 +37,5 @@ urlpatterns = [
     path('post2db', testv.post2db, name='post2db'),
     path('register/',testv.register, name='register'),
     path('login/',testv.login, name='login'),
+    path('profile',testv.profile),
 ] 

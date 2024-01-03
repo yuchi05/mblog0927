@@ -10,6 +10,10 @@ def homepage(request): #首頁
     now = datetime.now()
     hour = now.timetuple().tm_hour #時間 index用到hour
     years = range(1960,2024) #產生range1960-2023
+    if request.user.is_authenticated:
+        user_name = request.user.username
+    else:
+        user_name = '未登入'
     return render(request, 'index.html', locals()) #透過render呼叫網站
 
 def showpost(request, slug):
